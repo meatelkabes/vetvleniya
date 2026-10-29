@@ -4,120 +4,39 @@
 * Вариант:  7                     *
 ***********************************/
 
-
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
 int main() {
 
-    double speed, gasSaturationCoefficient, frudNum;
-    const double diameter = 19.1;
-    const double theAccelerationDueToGravity = 9.81;
+  double speed, gasSaturationCoefficient, frudNumber;
+  double diameter = 19.1;
+  double theAccelerationDueToGravity = 9.81;
+  int speedLimit = 50;
+  int speedStep = 1;
+  double lowFroudeCoeff = 0.05;
+  double lowFroudePower = 0.2;
+  double highFroudeCoeff = 0.35;
+  double highFroudePower = 0.1;
+  double froudeThreshold = 1.0;
 
-    for (speed = 1; speed <= 50; speed += 1) {
-
-        cout << "speed = ";
-        cin >> speed;
-
-        frudNum = ((speed * speed) * 100) / (theAccelerationDueToGravity * diameter);
-
-        if (frudNum < 1) {
-            gasSaturationCoefficient = 0.05 * pow((frudNum), 0.2);
-        } else {
-            gasSaturationCoefficient = 0.35 * pow((frudNum), 0.1);
-        }
-
-        cout << "frudNum = " << frudNum << endl;
-        cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-код, написанный до моей эволюции из обезьяны в человека 
-#include <iostream>
-#include <math.h>
-
-using namespace std;
-
-int main() {
-
-    double speed, gasSaturationCoefficient, frudNum;
-    const double diameter = 19.1;
-    const double theAccelerationDueToGravity = 9.81;
+  for (speed = 1; speed <= speedLimit; speed += speedStep) {
 
     cout << "speed = ";
     cin >> speed;
 
-    for (speed = 1; speed <= 50; speed += 1) {
+    frudNumber = ((speed * speed) * 100) / (theAccelerationDueToGravity * diameter);
 
-        frudNum = ((speed * speed) * 100) / (theAccelerationDueToGravity * diameter);
+    if (frudNumber < froudeThreshold) {
+        gasSaturationCoefficient = lowFroudeCoeff * pow((frudNumber), lowFroudePower);
+      } else {
+        gasSaturationCoefficient = highFroudeCoeff * pow((frudNumber), highFroudePower);
+      }
 
-        if (frudNum < 1) {
-            gasSaturationCoefficient = 0.05 * pow((frudNum), 0.2);
-        }
-        else {
-            gasSaturationCoefficient = 0.35 * pow((frudNum), 0.1);
-        }
-
-        if (speed == 1) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-
-        if (speed == 2) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-
-        if (speed == 5) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-        if (speed == 10) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-        if (speed == 20) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-        if (speed == 50) {
-
-            cout << "frudNum = " << frudNum << endl;
-            cout << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
-
-        }
-
-
+    cout << "frudNum = " << frudNumber << endl
+         << "gasSaturationCoefficient = " << gasSaturationCoefficient << endl;
     }
+
 }
-*/
